@@ -196,20 +196,10 @@ const runGlassIntro = async () => {
 
   const isMobile = window.matchMedia("(max-width: 760px)").matches;
   const easing = "cubic-bezier(.22,1,.36,1)";
-  const panelDelay = isMobile ? 320 : 520;
-  const panelDuration = isMobile ? 820 : 1_280;
-  const lineDuration = isMobile ? 720 : 1_080;
-  const shadeDelay = isMobile ? 920 : 1_420;
-  const shadeDuration = isMobile ? 460 : 640;
-  const leftFrames = isMobile
-    ? [{ transform: "translate3d(0,0,0)" }, { transform: "translate3d(0,-102%,0)" }]
-    : [{ transform: "translate3d(0,0,0)" }, { transform: "translate3d(-102%,0,0)" }];
-  const rightFrames = isMobile
-    ? [{ transform: "translate3d(0,0,0)" }, { transform: "translate3d(0,102%,0)" }]
-    : [{ transform: "translate3d(0,0,0)" }, { transform: "translate3d(102%,0,0)" }];
-  const lineFrames = isMobile
-    ? [{ transform: "translate3d(0,-110vh,0)", opacity: 0 }, { transform: "translate3d(0,115vh,0)", opacity: 1 }]
-    : [{ transform: "translate3d(-120vw,0,0)", opacity: 0 }, { transform: "translate3d(180vw,0,0)", opacity: 1 }];
+  const revealDuration = isMobile ? 950 : 1_250;
+  const shadeDelay = isMobile ? 880 : 1_160;
+  const shadeDuration = isMobile ? 360 : 520;
+  glassIntro.classList.add("is-circle-reveal");
 
   document.body.classList.add("is-intro-playing");
   glassIntro.hidden = false;
@@ -224,9 +214,10 @@ const runGlassIntro = async () => {
   };
 
   try {
-    animate(glassIntro.querySelector(".glass-intro__surface--left"), leftFrames, panelDuration, panelDelay);
-    animate(glassIntro.querySelector(".glass-intro__surface--right"), rightFrames, panelDuration, panelDelay);
-    animate(glassIntro.querySelector(".glass-intro__light-line"), lineFrames, lineDuration, isMobile ? 0 : 80);
+    animate(glassIntro, [
+      { maskImage: "radial-gradient(circle at 50% 50%, transparent 0, transparent 0%, #000 .8%, #000 100%)", webkitMaskImage: "radial-gradient(circle at 50% 50%, transparent 0, transparent 0%, #000 .8%, #000 100%)" },
+      { maskImage: "radial-gradient(circle at 50% 50%, transparent 0, transparent 150%, #000 150.8%, #000 151%)", webkitMaskImage: "radial-gradient(circle at 50% 50%, transparent 0, transparent 150%, #000 150.8%, #000 151%)" },
+    ], revealDuration);
     animate(glassIntro.querySelector(".glass-intro__shade"), [{ opacity: .95 }, { opacity: 0 }], shadeDuration, shadeDelay);
     animate(glassIntro.querySelector(".glass-intro__photo"), [{ opacity: .46, transform: "scale(1.025)" }, { opacity: 0, transform: "scale(1)" }], shadeDuration, shadeDelay);
   } catch {
@@ -234,7 +225,7 @@ const runGlassIntro = async () => {
     return;
   }
 
-  const endAt = Math.max(panelDelay + panelDuration, shadeDelay + shadeDuration);
+  const endAt = Math.max(revealDuration, shadeDelay + shadeDuration);
   introTimeout = window.setTimeout(() => finishGlassIntro(true), endAt + 500);
   Promise.all(introAnimations.map((animation) => animation.finished.catch(() => undefined)))
     .then(() => finishGlassIntro());

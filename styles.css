@@ -70,8 +70,9 @@ button, a { touch-action: manipulation; }
   box-shadow: 0 1px 0 rgba(248, 252, 255, .08);
   backdrop-filter: blur(12px);
 }
-.brand { display: inline-flex; align-items: center; gap: .78rem; min-width: 12rem; }
+.brand { display: inline-flex; align-items: center; min-width: 12rem; }
 .brand img { width: 2.85rem; height: 2.85rem; border-radius: 50%; object-fit: cover; background: #f8fcff; }
+.brand .brand-logo { width: min(14rem, 100%); height: auto; border-radius: 0; object-fit: contain; background: transparent; }
 .brand-copy { display: grid; gap: .26rem; }
 .brand-name { font-size: .91rem; font-weight: 700; letter-spacing: .2em; }
 .brand-subtitle { color: rgba(248, 252, 255, .74); font-size: .53rem; letter-spacing: .17em; white-space: nowrap; }
@@ -86,7 +87,7 @@ button, a { touch-action: manipulation; }
 .header-cta .arrow, .button .arrow, .service-link .arrow, .contact-whatsapp .arrow { font-size: 1rem; transition: transform .2s ease; }
 .header-cta:hover .arrow, .button:hover .arrow, .service-link:hover .arrow, .contact-whatsapp:hover .arrow { transform: translate(2px, -2px); }
 
-.glass-intro { position: fixed; z-index: 100; inset: 0; overflow: hidden; isolation: isolate; background: var(--ink); }
+.glass-intro { position: fixed; z-index: 100; inset: 0; overflow: hidden; isolation: isolate; background: var(--ink); -webkit-mask-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 0%, #000 .8%, #000 100%); mask-image: radial-gradient(circle at 50% 50%, transparent 0, transparent 0%, #000 .8%, #000 100%); }
 .glass-intro__photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 46%; opacity: .46; transform: scale(1.025); }
 .glass-intro__shade { position: absolute; inset: 0; background: linear-gradient(110deg, rgba(5, 50, 73, .78), rgba(4, 48, 72, .58) 45%, rgba(5, 50, 73, .78)); opacity: .95; }
 .glass-intro__surface { position: absolute; top: 0; bottom: 0; width: 50.1%; overflow: hidden; border-color: rgba(248, 252, 255, .13); background: linear-gradient(115deg, rgba(248, 252, 255, .055), rgba(4, 48, 72, .19) 28%, rgba(248, 252, 255, .025) 68%, rgba(4, 48, 72, .2)); backdrop-filter: blur(2px) brightness(.7); -webkit-backdrop-filter: blur(2px) brightness(.7); }
@@ -95,6 +96,8 @@ button, a { touch-action: manipulation; }
 .glass-intro__surface--left { left: 0; border-right: 1px solid rgba(248, 252, 255, .12); }
 .glass-intro__surface--right { right: 0; border-left: 1px solid rgba(248, 252, 255, .12); }
 .glass-intro__light-line { position: absolute; z-index: 2; top: 47.5%; left: -60%; width: 65%; height: 1px; background: linear-gradient(90deg, transparent, rgba(248, 252, 255, .7) 35%, rgba(97, 198, 228, .94) 52%, rgba(248, 252, 255, .55) 68%, transparent); box-shadow: 0 0 22px rgba(10, 145, 199, .3); transform: translate3d(0,0,0) rotate(-4deg); }
+.glass-intro.is-circle-reveal .glass-intro__surface,
+.glass-intro.is-circle-reveal .glass-intro__light-line { display: none; }
 .intro-skip { position: fixed; z-index: 101; top: max(1rem, env(safe-area-inset-top)); right: max(1rem, env(safe-area-inset-right)); display: inline-flex; align-items: center; justify-content: center; min-height: 2.9rem; padding: .7rem 1rem; border: 1px solid rgba(248, 252, 255, .32); border-radius: 999px; background: rgba(4, 48, 72, .45); color: #f8fcff; font: 600 .62rem/1 var(--sans); letter-spacing: .12em; cursor: pointer; backdrop-filter: blur(8px); }
 .intro-skip:hover { border-color: var(--brand-cyan-light); color: var(--brand-cyan-light); }
 body.is-intro-playing { overflow: hidden; }
@@ -270,8 +273,8 @@ body.is-intro-playing { overflow: hidden; }
   html { scroll-padding-top: 5rem; }
   .site-header { min-height: 4.5rem; padding-inline: .75rem; gap: .75rem; }
   .site-header.is-scrolled { min-height: 4.2rem; }
-  .brand { flex: 1 1 auto; min-width: 0; gap: .55rem; overflow: hidden; }
-  .brand img { width: 2.35rem; height: 2.35rem; }
+  .brand { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+  .brand .brand-logo { width: min(11.5rem, 100%); }
   .brand-copy { min-width: 0; gap: .12rem; overflow: hidden; }
   .brand-name { font-size: .78rem; letter-spacing: .16em; }
   .brand-subtitle { overflow: hidden; font-size: .45rem; letter-spacing: .08em; text-overflow: ellipsis; }
