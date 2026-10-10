@@ -268,21 +268,21 @@ body.is-intro-playing { overflow: hidden; }
 @media (max-width: 760px) {
   :root { --gutter: 1.15rem; }
   html { scroll-padding-top: 5rem; }
-  .site-header { min-height: 4.5rem; padding-inline: .75rem; }
+  .site-header { min-height: 4.5rem; padding-inline: .75rem; gap: .75rem; }
   .site-header.is-scrolled { min-height: 4.2rem; }
-  .brand { min-width: auto; gap: .55rem; }
+  .brand { flex: 1 1 auto; min-width: 0; gap: .55rem; overflow: hidden; }
   .brand img { width: 2.35rem; height: 2.35rem; }
-  .brand-copy { gap: .12rem; }
+  .brand-copy { min-width: 0; gap: .12rem; overflow: hidden; }
   .brand-name { font-size: .78rem; letter-spacing: .16em; }
-  .brand-subtitle { font-size: .45rem; letter-spacing: .08em; }
+  .brand-subtitle { overflow: hidden; font-size: .45rem; letter-spacing: .08em; text-overflow: ellipsis; }
   .desktop-nav { display: none; }
-  .mobile-menu { position: relative; display: block; }
+  .mobile-menu { position: relative; display: block; flex: 0 0 auto; }
   .mobile-menu-toggle { display: inline-flex; align-items: center; justify-content: center; min-height: 2.5rem; padding: .5rem .85rem; border: 1px solid rgba(248, 252, 255, .35); border-radius: 999px; background: transparent; color: #f8fcff; font: 600 .68rem/1 var(--sans); list-style: none; cursor: pointer; }
   .mobile-menu-toggle::-webkit-details-marker { display: none; }
   .mobile-menu[open] .mobile-menu-toggle { border-color: var(--brand-cyan-light); color: var(--brand-cyan-light); }
   .mobile-nav { position: absolute; top: calc(100% + .4rem); right: 0; display: none; min-width: 12.5rem; padding: .55rem; border: 1px solid rgba(248, 252, 255, .18); background: rgba(4, 48, 72, .97); color: #f8fcff; box-shadow: 0 1rem 3rem rgba(0, 48, 76, .24); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
   .mobile-menu[open] .mobile-nav { display: grid; }
-  .header-cta { gap: .45rem; padding: .55rem .75rem; font-size: .66rem; white-space: nowrap; }
+  .header-cta { flex: 0 0 auto; gap: .45rem; padding: .55rem .75rem; font-size: .66rem; white-space: nowrap; }
   .header-cta-label { display: none; }
   .header-cta-short { display: inline; }
   .mobile-nav a { display: flex; align-items: center; min-height: 2.75rem; padding: .65rem .85rem; font-size: .8rem; }
